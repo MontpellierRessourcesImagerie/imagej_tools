@@ -3,7 +3,7 @@ import webbrowser
 from ij import IJ
 from ij.gui import GenericDialog
 from ij.gui import Toolbar
-from fr.cnrs.mri.tools import GenericTool
+from fr.cnrs.mri.ijso.tools import GenericTool
 from fr.cnrs.mri.scratchAssay.analyzer import ScratchAssayAnalyzer
 from fr.cnrs.mri.scratchAssay.masks import CreateMaskFromVariance
 from fr.cnrs.mri.scratchAssay.masks import CreateMaskFromFindEdges
