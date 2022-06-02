@@ -42,15 +42,12 @@ class MeasureTool(GenericTool):
         self.closeRadius = 4
         self.minArea = 999999
         self.ignoreSpatialCalibration = False
+        self.operation = ScratchAssayAnalyzer()
         
     def runTool(self):
         inputImage = IJ.getImage()
-        analyzer = ScratchAssayAnalyzer(inputImage)
-        createMaskMethods = {"variance"   : CreateMaskFromVariance(inputImage, self.varianceFilterRadius, self.threshold), 
-                             "find edges" : CreateMaskFromFindEdges(inputImage)}
-        analyzer.setCreateMaskMethod(createMaskMethods[self.methodOption])
-        analyzer.setCloseIterations(self.closeRadius)
-        analyzer.setMinimalArea(self.minArea)
+        analyzer = self.operation
+        analyzer.setInputImage(inputImage)
         analyzer.addPropertyChangeListener(self)
         analyzer.start()    
         
