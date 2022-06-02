@@ -1,7 +1,6 @@
 import sys
 import webbrowser
 from ij import IJ
-from ij.gui import GenericDialog
 from ij.gui import Toolbar
 from fr.cnrs.mri.ijso.tools import GenericTool
 from fr.cnrs.mri.scratchAssay.analyzer import ScratchAssayAnalyzer
@@ -36,12 +35,6 @@ class MeasureTool(GenericTool):
     
     def __init__(self):
         GenericTool.__init__(self)
-        self.methodOption = "variance"
-        self.varianceFilterRadius = 20
-        self.threshold = 1
-        self.closeRadius = 4
-        self.minArea = 999999
-        self.ignoreSpatialCalibration = False
         self.operation = ScratchAssayAnalyzer()
         
     def runTool(self):
@@ -51,22 +44,5 @@ class MeasureTool(GenericTool):
         analyzer.addPropertyChangeListener(self)
         analyzer.start()    
         
-    def showOptionsDialog(self):
-        dialog = GenericDialog("Measure Image Options")
-        dialog.addChoice("method", ["variance", "find edges"], self.methodOption)
-        dialog.addNumericField("variance filter radius", self.varianceFilterRadius)
-        dialog.addNumericField("threshold", self.threshold)
-        dialog.addNumericField("radius close", self.closeRadius)
-        dialog.addNumericField("min. size", self.minArea)
-        dialog.addCheckbox("ignore spatial calibration", self.ignoreSpatialCalibration)
-        dialog.showDialog()
-        if dialog.wasCanceled():
-            return
-        self.methodOption = dialog.getNextChoice()
-        self.varianceFilterRadius = dialog.getNextNumber()
-        self.threshold = dialog.getNextNumber()
-        self.closeRadius = dialog.getNextNumber()
-        self.minArea = dialog.getNextNumber()
-        self.ignoreSpatialCalibration = dialog.getNextBoolean()
-        
+     
 main()
