@@ -35,7 +35,7 @@ class MeasureTool(GenericTool):
     
     def __init__(self):
         GenericTool.__init__(self)
-        self.operation = ScratchAssayAnalyzer()
+        self.setOperation(ScratchAssayAnalyzer())
         
     def runTool(self):
         inputImage = IJ.getImage()
@@ -43,6 +43,6 @@ class MeasureTool(GenericTool):
         analyzer.setInputImage(inputImage)
         analyzer.addPropertyChangeListener(self)
         analyzer.start()    
-        
+   
      
 main()
